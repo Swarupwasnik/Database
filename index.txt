@@ -1,0 +1,271 @@
+ show dbs
+admin   0.000GB
+config  0.000GB
+hr      0.000GB
+local   0.000GB
+mydb    0.000GB
+swarup  0.000GB
+> use hr
+switched to db hr
+> db
+hr
+> show collections
+employeedata
+> db.employeedata.insertMany([{name:"Ankit",Course:"Mechanical", College:"ADCT",year:2021,Company:'Cummins" Status:"single"active:true} ,{name:"Mahesh" ,Course:"Mechanical" College:"SVPCE&T" ,year:"2021",Company:'Fiat" Status:"single" active:"true"},{name:"shubham",Course:"mechaical", college:"Recom" ,year:2021,Company:"Accenture" , Status:"Single" active:"true"},{name:"ritik" ,Course:"Mechanical" ,college:"gaikwal Patil" ,Company:"Mahindra" ,status:'Single',active:'true" ,year:2022}
+...
+...
+> db.employeedata.insertMany([{name:"Ankit",Course:"Mechanical", College:"ADCT",year:2021,Company:'Cummins" Status:"single"active:true} ,{name:"Mahesh" ,Course:"Mechanical" College:"SVPCE&T" ,year:"2021",Company:'Fiat" Status:"single" active:"true"},{name:"shubham",Course:"mechaical", college:"Recom" ,year:2021,Company:"Accenture" , Status:"Single" active:"true"},{name:"ritik" ,Course:"Mechanical" ,college:"gaikwal Patil" ,Company:"Mahindra" ,status:'Single',active:'true" ,year:2022}])
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:211
+>  db.employeedata.insertMany([{name:"Ankit",Course:"Mechanical", College:"ADCT",year:2021,Company:'Cummins", Status:"single,"active:true} ,{name:"Mahesh" ,Course:"Mechanical", College:"SVPCE&T" ,year:"2021",Company:'Fiat", Status:"single", active:true},{name:"shubham",Course:"mechaical", college:"Recom" ,year:2021,Company:"Accenture" , Status:"Single", active:true },{name:"ritik" ,Course:"Mechanical" ,college:"gaikwal Patil" ,Company:"Mahindra" ,status:'Single',active:true ,year:2022}])
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:214
+> db.employeedata.insertMany([{name:"Kumar",Type:"Engineer" , year:2014, course:'Mechaical" , Status:"single",Age:24,active:true},{name:"saurabh", type:"Engineer",year:2016,course:"Chemical",status:"single",Age:24,active:true},{name:"swapnil",type:"Engineer" ,year:2020,Course:"Chemical",status:"single",active:true},{name:"Sandeep",type:"Engineer", Year:2021,Course:"Chemical",Status:"single",year:2020 ,Age:25,active:true}])
+uncaught exception: SyntaxError: '' literal not terminated before end of script :
+@(shell):1:424
+> db.employeedata.insertMany([{name:"Kumar",Type:"Engineer" , year:2014, course:"Mechanical" , Status:"single",Age:24,active:true},{name:"saurabh", type:"Engineer",year:2016,course:"Chemical",status:"single",Age:24,active:true},{name:"swapnil",type:"Engineer" ,year:2020,Course:"Chemical",status:"single",active:true},{name:"Sandeep",type:"Engineer", Year:2021,Course:"Chemical",Status:"single",year:2020 ,Age:25,active:true}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("62e793fc8e2587007367af93"),
+                ObjectId("62e793fc8e2587007367af94"),
+                ObjectId("62e793fc8e2587007367af95"),
+                ObjectId("62e793fc8e2587007367af96")
+        ]
+}
+> db.employeedata.updateOne({name:"Kumar"},{$set:{type:"Scientist"} })
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.employeedata.find().pretty()
+{
+        "_id" : 1,
+        "name" : "Brillian",
+        "phone" : "+1 778 574 666",
+        "city" : "Beijing",
+        "status" : "Married"
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af93"),
+        "name" : "Kumar",
+        "Type" : "Engineer",
+        "year" : 2014,
+        "course" : "Mechanical",
+        "Status" : "single",
+        "Age" : 24,
+        "active" : true,
+        "type" : "Scientist"
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af94"),
+        "name" : "saurabh",
+        "type" : "Engineer",
+        "year" : 2016,
+        "course" : "Chemical",
+        "status" : "single",
+        "Age" : 24,
+        "active" : true
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af95"),
+        "name" : "swapnil",
+        "type" : "Engineer",
+        "year" : 2020,
+        "Course" : "Chemical",
+        "status" : "single",
+        "active" : true
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af96"),
+        "name" : "Sandeep",
+        "type" : "Engineer",
+        "Year" : 2021,
+        "Course" : "Chemical",
+        "Status" : "single",
+        "year" : 2020,
+        "Age" : 25,
+        "active" : true
+}
+> db.employeedata.updateMany({Salary:50000},{$set:{active:false}})
+{ "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
+> db.employeedata.find().pretty()
+{
+        "_id" : 1,
+        "name" : "Brillian",
+        "phone" : "+1 778 574 666",
+        "city" : "Beijing",
+        "status" : "Married"
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af93"),
+        "name" : "Kumar",
+        "Type" : "Engineer",
+        "year" : 2014,
+        "course" : "Mechanical",
+        "Status" : "single",
+        "Age" : 24,
+        "active" : true,
+        "type" : "Scientist"
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af94"),
+        "name" : "saurabh",
+        "type" : "Engineer",
+        "year" : 2016,
+        "course" : "Chemical",
+        "status" : "single",
+        "Age" : 24,
+        "active" : true
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af95"),
+        "name" : "swapnil",
+        "type" : "Engineer",
+        "year" : 2020,
+        "Course" : "Chemical",
+        "status" : "single",
+        "active" : true
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af96"),
+        "name" : "Sandeep",
+        "type" : "Engineer",
+        "Year" : 2021,
+        "Course" : "Chemical",
+        "Status" : "single",
+        "year" : 2020,
+        "Age" : 25,
+        "active" : true
+}
+> db.employeedata.updateMany({active:true},{$set:{Salary:50000}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.employeedata.find().pretty()
+{
+        "_id" : 1,
+        "name" : "Brillian",
+        "phone" : "+1 778 574 666",
+        "city" : "Beijing",
+        "status" : "Married"
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af93"),
+        "name" : "Kumar",
+        "Type" : "Engineer",
+        "year" : 2014,
+        "course" : "Mechanical",
+        "Status" : "single",
+        "Age" : 24,
+        "active" : true,
+        "type" : "Scientist",
+        "Salary" : 50000
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af94"),
+        "name" : "saurabh",
+        "type" : "Engineer",
+        "year" : 2016,
+        "course" : "Chemical",
+        "status" : "single",
+        "Age" : 24,
+        "active" : true,
+        "Salary" : 50000
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af95"),
+        "name" : "swapnil",
+        "type" : "Engineer",
+        "year" : 2020,
+        "Course" : "Chemical",
+        "status" : "single",
+        "active" : true,
+        "Salary" : 50000
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af96"),
+        "name" : "Sandeep",
+        "type" : "Engineer",
+        "Year" : 2021,
+        "Course" : "Chemical",
+        "Status" : "single",
+        "year" : 2020,
+        "Age" : 25,
+        "active" : true,
+        "Salary" : 50000
+}
+> db.employeedata.deleteMany({status:"Married"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.employeedata.find().pretty()
+{
+        "_id" : ObjectId("62e793fc8e2587007367af93"),
+        "name" : "Kumar",
+        "Type" : "Engineer",
+        "year" : 2014,
+        "course" : "Mechanical",
+        "Status" : "single",
+        "Age" : 24,
+        "active" : true,
+        "type" : "Scientist",
+        "Salary" : 50000
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af94"),
+        "name" : "saurabh",
+        "type" : "Engineer",
+        "year" : 2016,
+        "course" : "Chemical",
+        "status" : "single",
+        "Age" : 24,
+        "active" : true,
+        "Salary" : 50000
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af95"),
+        "name" : "swapnil",
+        "type" : "Engineer",
+        "year" : 2020,
+        "Course" : "Chemical",
+        "status" : "single",
+        "active" : true,
+        "Salary" : 50000
+}
+{
+        "_id" : ObjectId("62e793fc8e2587007367af96"),
+        "name" : "Sandeep",
+        "type" : "Engineer",
+        "Year" : 2021,
+        "Course" : "Chemical",
+        "Status" : "single",
+        "year" : 2020,
+        "Age" : 25,
+        "active" : true,
+        "Salary" : 50000
+}
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
